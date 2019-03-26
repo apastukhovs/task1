@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+ <?php
+    if($errors){
+  foreach($errors as $err){
+   echo "<div class=\"errors\">
+          <p>{$err}</p>
+       </div>";
+  }
+} elseif($message){
+  echo "<div class=\"success\">
+         <p>{$message}</p>
+      </div>";
+}        
+ ?>
+<hr>
 <html>
     <head>
         <meta charset="utf-8">
@@ -9,56 +23,57 @@
     </head>
     <body>
     <h2>Upload File</h2>
-    <form enctype="multipart/form-data" method="post">
-        File: <input type="file" name="file">
-    <input type="submit" name="submintbut" value="Sent file">
+    <form action="" method="post" enctype="multipart/form-data">
+    <label for="fileSelect">Filename:</label>
+    <input  class="some" type="file" name="file" id="fileSelect">
+    <br>
+    <input  type="submit" value="Upload">
     </form>
-    <table border="1" width="500">
-		<thead>
-		<tr>
-			<th>#</th>
-			<th>Name</th>
-			<th>Size</th>
-			<th>Delete</th>
-		</tr>
-		</thead>
-		<tbody>
-			<?php
-				$fileList = getListOfFile(PathDir);
-				$fileSize = getFileSize(PathDir);
-                var_dump($fileSize);
-                var_dump($fileList);
-				$number = 1;
-				if($files){
-					foreach($files as $file){
-						$fileName = $file;
-						$i = $number;
-						$i--;
-					  $fsize = $fileSize[$i];
-						$text = "<td>
-							<form action=\"\" method=\"post\">
-								<input type=\"hidden\" name=\"fname\" value=\"{$fileName}\">
-									<button type=\"submit\">Delete</button>
-							</form>
-							</td>\n";
-						echo "<tr align=\"center\">\n";
-				    	echo "<td>{$number}</td>\n";
-				    	echo "<td>{$fileName}</td>\n";
-				    	echo "<td>{$fsize}</td>\n";
-				    	echo $text;
-				    	echo "</tr>\n";
-						$number++;
-					}
-				} else {
-					echo "<tr align=\"center\">\n";
-					echo "<td colspan=\"4\">Failed opening directory for reading.</td>\n";
-					echo "</tr>\n";
-				}
-			?>
-		</tbody>
-	</table>
-<?php
-
-?>
-    </body>
+    <table class="tableTmp" border="7" width="777">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Namee</th>
+    <th>Size</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <?php
+    $listOfFile = getListOfFile(DirPath);
+    $sizeOfFile = getSizeOfFile(DirPath);
+    var_dump($listOfFile);    
+    $id = 1;
+    if($listOfFile)
+    {
+      foreach($listOfFile as $file)
+      {
+        $fileName = $file;
+        $fileSize = sizeConverter($sizeOfFile[$id -1]);
+        $event =
+        "<td>
+          <form action=\"\" method=\"post\">
+          <input type=\"hidden\" name=\"fname\" value=\"{$fileName}\">
+          <button class=\"del-button\" type=\"submit\">Delete</button>
+          </form>
+        </td>\n";
+        echo "<tr align=\"center\">\n";
+        echo "<td>{$id}</td>\n";
+        echo "<td>{$fileName}</td>\n";
+        echo "<td>{$fileSize}</td>\n";
+        echo $event;
+        echo "</tr>\n";
+        $id += 1;
+      }
+    }
+    else
+    {
+      echo "<tr align=\"center\">\n";
+      echo "<td colspan=\"4\">You can't get list of files.</td>\n";
+      echo "</tr>\n";
+    }
+  ?>
+  </tbody>
+</table>
+</body>
 </html>

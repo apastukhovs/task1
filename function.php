@@ -2,53 +2,71 @@
 function uploadFile () {
 if(isset($_FILES['file'])) {
     $fileName = $_FILES['file']['name'];
- 
-    echo 'File: ' . $fileName . '<br>';
     
     if (move_uploaded_file($_FILES['file']['tmp_name'], DirPath . $fileName)) {
-        echo 'Download was succesful.<br>';
+        return true;
     } else {
-        echo 'Cant download!<br>';
+        return false;
     }
 }
 }
 
-<<<<<<< HEAD
-function getListOfFile($dir) {
-	return $result = glob(DirPath.'*.*');
-=======
 function getListOfFile($dir)
 {
-	$dirName = "files/";
-	return $result = glob($dirName.'*.*');
->>>>>>> 0a848ba3dafae0e0b1e79a263bb566d0b7797882
+    $nameOfDir = "files/";
+    return $result = glob($nameOfDir.'*.*');
 }
 
-function removeFile($dir, $fileName) {
-	if($dir && $fileName)
-	{
-		unlink($fileName);
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-<<<<<<< HEAD
-function getFileSize($dir) {
-	$result = glob(DirPath.'*.*');
-=======
-function getFileSize($dir)
+function removeFile($dir, $fileName)
 {
-	$dirName = "files/";
-	$result = glob($dirName.'*.*');
->>>>>>> 0a848ba3dafae0e0b1e79a263bb566d0b7797882
+    if($dir && file_exists($fileName))
+    {
+        unlink($fileName);
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
-	foreach ($result as $key) {
-		$fileSize[] = (filesize($key) . "\n");
-	}
+function getSizeOfFile($dir)
+{
+    $nameOfDir = "files/";
+    $result = glob($nameOfDir.'*.*');
+
+    foreach ($result as $key) {
+        $fileSize[] = (filesize($key) . "\n");
+    }
   return $fileSize;
 }
 
+function sizeConverter($size)
+{
+    if($size >= 1024 && $size < 1024 * 1024)
+    {
+        $size = round($size / 1024, 2) . ' KB';
+
+    }
+    elseif ($size >= 1024 * 1024)
+    {
+        $size = round($size / 1024 / 1024, 1) . ' MB';
+    }
+    else
+    {
+        $size = $size . ' B';
+    }
+    return $size;
+}
+
+function getPerms($file)
+{
+    if(0777 === fileperms($file))
+    {
+    return true;
+  }
+    else
+  {
+    return false;
+  }
+}
 ?>
