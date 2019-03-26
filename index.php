@@ -6,7 +6,7 @@ require 'function.php';
 if(isset($_FILES['file'])){
     $errors = array();
 	$data = '';
-    $file_name = $_FILES['file']['name'];
+    $fileName = $_FILES['file']['name'];
 
 	if($_FILES['file']['error'] > 0){
 	    switch ($_FILES['userfile']['error'])
@@ -22,7 +22,7 @@ if(isset($_FILES['file'])){
 
 	}
 
-	if(file_exists(DirPath . $file_name)){
+	if(file_exists(DirPath . $fileName)){
     	$errors[] = 'File already exists.';
 	}
 
@@ -37,9 +37,9 @@ if(isset($_FILES['file'])){
 }
 
 if(isset($_POST["fname"])){
-	$fname = $_POST["fname"];
+	$fileName = $_POST["name"];
 	$dir = DirPath;
-	if(removeFile($dir, $fname)){
+	if(removeFile($dir, $fileName)){
 		$data = "File deleted";
 	} else {
 		$errors[] = "You don't have permission to delete this file";
