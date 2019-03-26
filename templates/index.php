@@ -13,38 +13,52 @@
         File: <input type="file" name="file">
     <input type="submit" name="submintbut" value="Sent file">
     </form>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Size</th>
-                <th>DeleteFile</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-                $arr = getFileInfo(DirPath);
-                $countFile = 0;
-                foreach($arr as $item) {
-                    $countFile++;
-                }
-            ?>   
-            <tr>
-                <th><?= $countFile ?></th>
-                <td><?= $item['name']?></td>
-                <td><?= $item['size']?></td>  
-                <td>Delete</td>
-            </tr>
-            
-    </table>
-
+    <table border="1" width="500">
+		<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Size</th>
+			<th>Delete</th>
+		</tr>
+		</thead>
+		<tbody>
+			<?php
+				$fileList = getListOfFile(PathDir);
+				$fileSize = getFileSize(PathDir);
+                var_dump($fileSize);
+                var_dump($fileList);
+				//die;
+				$number = 1;
+				if($files){
+					foreach($files as $file){
+						$fname = $file;
+						$i = $number;
+						$i--;
+					  $fsize = $fileSize[$i];
+						$text = "<td>
+									<form action=\"\" method=\"post\">
+										<input type=\"hidden\" name=\"fname\" value=\"{$fname}\">
+										<button type=\"submit\">Delete</button>
+									</form>
+								 </td>\n";
+						echo "<tr align=\"center\">\n";
+				    	echo "<td>{$number}</td>\n";
+				    	echo "<td>{$fname}</td>\n";
+				    	echo "<td>{$fsize}</td>\n";
+				    	echo $text;
+				    	echo "</tr>\n";
+						$number++;
+					}
+				} else {
+					echo "<tr align=\"center\">\n";
+					echo "<td colspan=\"4\">Failed opening directory for reading.</td>\n";
+					echo "</tr>\n";
+				}
+			?>
+		</tbody>
+	</table>
 <?php
-
-
-
-
-
 
 ?>
 

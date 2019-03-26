@@ -13,14 +13,11 @@ if(isset($_FILES['file'])) {
 }
 }
 
-function getListOfFile($dir)
-{
-	$dirName = "storage/";
-	return $result = glob($dirName.'*.*');
+function getListOfFile($dir) {
+	return $result = glob(DirPath.'*.*');
 }
 
-function removeFile($dir, $fname)
-{
+function removeFile($dir, $fname) {
 	if($dir && $fname)
 	{
 		unlink($fname);
@@ -31,10 +28,8 @@ function removeFile($dir, $fname)
 	}
 }
 
-function getFileSize($dir)
-{
-	$dirName = "storage/";
-	$result = glob($dirName.'*.*');
+function getFileSize($dir) {
+	$result = glob(DirPath.'*.*');
 
 	foreach ($result as $key) {
 		$fileSize[] = (filesize($key) . "\n");
