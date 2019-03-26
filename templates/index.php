@@ -13,5 +13,41 @@
         File: <input type="file" name="file">
     <input type="submit" name="submintbut" value="Sent file">
     </form>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>DeleteFile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+                $arr = getFileInfo(DirPath);
+                $countFile = 0;
+                foreach($arr as $item) {
+                    $countFile++;
+                }
+            ?>   
+            <tr>
+                <th><?= $countFile ?></th>
+                <td><?= $item['name']?></td>
+                <td><?= $item['size']?></td>  
+                <td>Delete</td>
+            </tr>
+            
+    </table>
+
+<?php
+
+
+
+
+
+
+?>
+
+
     </body>
 </html>
