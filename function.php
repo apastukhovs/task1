@@ -15,7 +15,7 @@ if(isset($_FILES['file'])) {
 
 function getListOfFile($dir)
 {
-	$dirName = "storage/";
+	$dirName = "files/";
 	return $result = glob($dirName.'*.*');
 }
 
@@ -33,7 +33,7 @@ function removeFile($dir, $fname)
 
 function getFileSize($dir)
 {
-	$dirName = "storage/";
+	$dirName = "files/";
 	$result = glob($dirName.'*.*');
 
 	foreach ($result as $key) {
