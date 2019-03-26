@@ -13,8 +13,15 @@ if(isset($_FILES['file'])) {
 }
 }
 
+<<<<<<< HEAD
 function getListOfFile($dir) {
 	return $result = glob(DirPath.'*.*');
+=======
+function getListOfFile($dir)
+{
+	$dirName = "files/";
+	return $result = glob($dirName.'*.*');
+>>>>>>> 0a848ba3dafae0e0b1e79a263bb566d0b7797882
 }
 
 function removeFile($dir, $fname) {
@@ -28,8 +35,15 @@ function removeFile($dir, $fname) {
 	}
 }
 
+<<<<<<< HEAD
 function getFileSize($dir) {
 	$result = glob(DirPath.'*.*');
+=======
+function getFileSize($dir)
+{
+	$dirName = "files/";
+	$result = glob($dirName.'*.*');
+>>>>>>> 0a848ba3dafae0e0b1e79a263bb566d0b7797882
 
 	foreach ($result as $key) {
 		$fileSize[] = (filesize($key) . "\n");
