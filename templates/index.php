@@ -28,7 +28,6 @@
 				$fileSize = getFileSize(PathDir);
                 var_dump($fileSize);
                 var_dump($fileList);
-				//die;
 				$number = 1;
 				if($files){
 					foreach($files as $file){
@@ -37,11 +36,11 @@
 						$i--;
 					  $fsize = $fileSize[$i];
 						$text = "<td>
-									<form action=\"\" method=\"post\">
-										<input type=\"hidden\" name=\"fname\" value=\"{$fname}\">
-										<button type=\"submit\">Delete</button>
-									</form>
-								 </td>\n";
+							<form action=\"\" method=\"post\">
+								<input type=\"hidden\" name=\"fname\" value=\"{$fname}\">
+									<button type=\"submit\">Delete</button>
+							</form>
+							</td>\n";
 						echo "<tr align=\"center\">\n";
 				    	echo "<td>{$number}</td>\n";
 				    	echo "<td>{$fname}</td>\n";
