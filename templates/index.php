@@ -31,19 +31,19 @@
 				$number = 1;
 				if($files){
 					foreach($files as $file){
-						$fname = $file;
+						$fileName = $file;
 						$i = $number;
 						$i--;
 					  $fsize = $fileSize[$i];
 						$text = "<td>
 							<form action=\"\" method=\"post\">
-								<input type=\"hidden\" name=\"fname\" value=\"{$fname}\">
+								<input type=\"hidden\" name=\"fname\" value=\"{$fileName}\">
 									<button type=\"submit\">Delete</button>
 							</form>
 							</td>\n";
 						echo "<tr align=\"center\">\n";
 				    	echo "<td>{$number}</td>\n";
-				    	echo "<td>{$fname}</td>\n";
+				    	echo "<td>{$fileName}</td>\n";
 				    	echo "<td>{$fsize}</td>\n";
 				    	echo $text;
 				    	echo "</tr>\n";
@@ -60,7 +60,5 @@
 <?php
 
 ?>
-
-
     </body>
 </html>
