@@ -13,33 +13,33 @@ if(isset($_FILES['file'])) {
 }
 }
 
-function get_filesize($file)
+function getListOfFile($dir)
 {
-    if(!file_exists($file)) return "Файл  не найден";
-
-  $filesize = filesize($file);
-
-if($filesize > 1024){
-$filesize = ($filesize/1024);
-    if($filesize > 1024){
-    $filesize = ($filesize/1024);
-        if($filesize > 1024) {
-        $filesize = ($filesize/1024);
-        $filesize = round($filesize, 1);
-        return $filesize." ГБ";       
-        } else {
-        $filesize = round($filesize, 1);
-        return $filesize." MБ";   
-        }       
-    } else {
-    $filesize = round($filesize, 1);
-    return $filesize." Кб";   
-    }  
-    } else {
-    $filesize = round($filesize, 1);
-    return $filesize." байт";   
-    }
+	$dirName = "storage/";
+	return $result = glob($dirName.'*.*');
 }
 
+function removeFile($dir, $fname)
+{
+	if($dir && $fname)
+	{
+		unlink($fname);
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+function getFileSize($dir)
+{
+	$dirName = "storage/";
+	$result = glob($dirName.'*.*');
+
+	foreach ($result as $key) {
+		$fileSize[] = (filesize($key) . "\n");
+	}
+  return $fileSize;
+}
 
 ?>
