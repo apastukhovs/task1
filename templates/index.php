@@ -1,17 +1,19 @@
 <!DOCTYPE html>
  <?php
     if($errors){
-  foreach($errors as $err){
+  foreach($errors as $error){
    echo "<div class=\"errors\">
-          <p>{$err}</p>
+          <p>{$error}</p>
        </div>";
   }
 } elseif($message){
   echo "<div class=\"success\">
          <p>{$message}</p>
-      </div>";
-}        
- ?>
+      </div>"; 
+} 
+
+
+?>
 <hr>
 <html>
     <head>
@@ -25,7 +27,8 @@
     <h2>Upload File</h2>
     <form action="" method="post" enctype="multipart/form-data">
     <label for="fileSelect">Filename:</label>
-    <input  class="some" type="file" name="file" id="fileSelect">
+    <input type="file" name="file" id="fileSelect">
+    <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
     <br>
     <input  type="submit" value="Upload">
     </form>
@@ -41,8 +44,7 @@
   <tbody>
   <?php
     $listOfFile = getListOfFile(DirPath);
-    $sizeOfFile = getSizeOfFile(DirPath);
-    var_dump($listOfFile);    
+    $sizeOfFile = getSizeOfFile(DirPath); 
     $id = 1;
     if($listOfFile)
     {
@@ -65,6 +67,7 @@
         echo "</tr>\n";
         $id += 1;
       }
+    
     }
     else
     {

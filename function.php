@@ -1,15 +1,17 @@
 <?
-function uploadFile () {
+function uploadFile($dir) {
 if(isset($_FILES['file'])) {
-    $fileName = $_FILES['file']['name'];
-    
+    $fileName = $_FILES['file']['name'];    
     if (move_uploaded_file($_FILES['file']['tmp_name'], DirPath . $fileName)) {
-        return true;
+        return $fileName;
     } else {
         return false;
     }
 }
+
+
 }
+
 
 function getListOfFile($dir)
 {
@@ -58,9 +60,9 @@ function sizeConverter($size)
     return $size;
 }
 
-function getPerms($file)
+/*function getPerms($fileName)
 {
-    if(0777 === fileperms($file))
+    if(0777 === fileperms($fileName))
     {
     return true;
   }
@@ -68,5 +70,6 @@ function getPerms($file)
   {
     return false;
   }
-}
+}*/
+
 ?>
