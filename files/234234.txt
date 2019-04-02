@@ -1,0 +1,15 @@
+public function deleteData($key) {
+        $key = trim($key);
+        if (!file_exists(INI_FILE_PATH)) {
+            return false;
+        }
+        $iniData = parse_ini_data(INI_FILE_PATH);
+        if (count($iniData) == 0) {
+            return false;
+        }
+        if (!isset($iniData[$key])) {
+            return false;
+        }
+        unset($iniData)[$key];
+        return true;
+    }

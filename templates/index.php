@@ -1,20 +1,5 @@
 <!DOCTYPE html>
- <?php
-    if($errors){
-  foreach($errors as $error){
-   echo "<div class=\"errors\">
-          <p>{$error}</p>
-       </div>";
-  }
-} elseif($message){
-  echo "<div class=\"success\">
-         <p>{$message}</p>
-      </div>"; 
-} 
 
-
-?>
-<hr>
 <html>
     <head>
         <meta charset="utf-8">
@@ -24,6 +9,20 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     </head>
     <body>
+    <?php
+      if($errors){
+    foreach($errors as $error){
+    echo "<div class=\"errors\">
+            <p>{$error}</p>
+        </div>";
+    }
+  } elseif($message){
+    echo "<div class=\"success\">
+          <p>{$message}</p>
+        </div>"; 
+  } 
+  ?>
+<hr>
     <h2>Upload File</h2>
     <form action="" method="post" enctype="multipart/form-data">
     <label for="fileSelect">Filename:</label>
