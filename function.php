@@ -1,14 +1,17 @@
 <?
 function uploadFile($dir) {
-if(isset($_FILES['file'])) {
-    $fileName = $_FILES['file']['name'];    
-    if (move_uploaded_file($_FILES['file']['tmp_name'], DirPath . $fileName)) {
-        return $fileName;
-    } else {
-        return false;
+    if(checkPermission($dir)) {
+        if(isset($_FILES['file'])) {
+        $fileName = $_FILES['file']['name'];    
+        if (move_uploaded_file($_FILES['file']['tmp_name'], DirPath . $fileName)) {
+            return $fileName;
+        } else {
+            return false;
+        }
     }
+ }
 }
-}
+
 if(isset($_FILES['file'])){
     $errors = array();
 	$message = '';
@@ -49,12 +52,13 @@ if(isset($_POST["fname"])){
 	}
 }
 
-function checkPermission($fname){
-	if(0777 === ( fileperms($fname) & 0777 )){
-        return true;
-    } else {
-    	return false;
-    }
+function checkPermission(){
+	$dirPerm = substr(decoct(fileperms(DirPath)), -3);
+	if (intval($dirPerm[2]) < 5) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 
@@ -64,17 +68,27 @@ function getListOfFile($dir)
     return $result = glob($nameOfDir.'*.*');
 }
 
-function removeFile($dir, $fileName)
-{
-    if($dir && file_exists($fileName))
-    {
-        unlink($fileName);
-        return true;
-    }
-    else {
-        return false;
-    }
+
+
+function removeFile($dir, $fileName){
+	if(file_exists($fileName))
+	{
+		$fname = $fileName;
+		if(checkPermission($dir)){
+			if(checkPermission($fname)){
+				if(unlink($fname))
+				{
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} else {
+			return false;
+		}
+	}
 }
+
 
 function getSizeOfFile($dir)
 {
