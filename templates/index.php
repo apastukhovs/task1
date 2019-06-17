@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="utf-8">
         <title>Hello world!</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="./css/style.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     </head>
     <body>
     <?php
@@ -15,6 +12,7 @@
     echo "<div class=\"errors\">
             <p>{$error}</p>
         </div>";
+  
     }
   } elseif($message){
     echo "<div class=\"success\">
@@ -26,10 +24,10 @@
     <h2>Upload File</h2>
     <form action="" method="post" enctype="multipart/form-data">
     <label for="fileSelect">Filename:</label>
-    <input type="file" name="file" id="fileSelect">
+    <input type="file" name="uploadFile" id="fileSelect">
     <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
     <br>
-    <input  type="submit" value="Upload">
+    <input type="submit" value="Upload">
     </form>
     <table class="tableTmp" border="7" width="777">
   <thead>
@@ -75,6 +73,7 @@
       echo "</tr>\n";
     }
   ?>
+  
   </tbody>
 </table>
 </body>
